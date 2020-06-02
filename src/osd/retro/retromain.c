@@ -1,4 +1,4 @@
-/***************************************************************************
+﻿/***************************************************************************
 retromain.c 
 mame2010 - libretro port of mame 0.139
 ****************************************************************************/
@@ -525,23 +525,23 @@ void osd_update_audio_stream(running_machine *machine,short *buffer, int samples
 void retro_set_environment(retro_environment_t cb)
 {
    static const struct retro_variable vars[] = {
-      { "mame_current_mouse_enable", "Mouse enabled; enabled|disabled" },
-      { "mame_current_videoapproach1_enable", "Video approach 1 Enabled; disabled|enabled" },
-      { "mame_current_skip_nagscreen", "Hide nag screen; enabled|disabled" },
-      { "mame_current_skip_gameinfo", "Hide game info screen; disabled|enabled" },
-      { "mame_current_skip_warnings", "Hide warning screen; disabled|enabled" },
-      { "mame_current_aspect_ratio", "Core provided aspect ratio; DAR|PAR" },
-      { "mame_current_turbo_button", "Enable autofire; disabled|button 1|button 2|R2 to button 1 mapping|R2 to button 2 mapping" },
-      { "mame_current_turbo_delay", "Set autofire pulse speed; medium|slow|fast" },
-      { "mame_current_frame_skip", "Set frameskip; 0|1|2|3|4|automatic" },
-      { "mame_current_sample_rate", "Set sample rate (Restart); 48000Hz|44100Hz|32000Hz|22050Hz" },
+      { "mame_current_mouse_enable", "启用鼠标; enabled|disabled" },
+      { "mame_current_videoapproach1_enable", "启用视频实现方式1; disabled|enabled" },
+      { "mame_current_skip_nagscreen", "隐藏烦人的信息屏幕; enabled|disabled" },
+      { "mame_current_skip_gameinfo", "隐藏游戏信息屏幕; disabled|enabled" },
+      { "mame_current_skip_warnings", "隐藏警告信息屏幕; disabled|enabled" },
+      { "mame_current_aspect_ratio", "内核输出宽高比; 屏幕宽高比|像素宽高比" },
+      { "mame_current_turbo_button", "启用连发; disabled|按键1|按键2|R2键为按键1的连发键|R2键为按键2的连发键" },
+      { "mame_current_turbo_delay", "设置连发速度; 中等|慢速|快速" },
+      { "mame_current_frame_skip", "设置跳帧; 0|1|2|3|4|自动" },
+      { "mame_current_sample_rate", "音频采样率（须重启）; 48000Hz|44100Hz|32000Hz|22050Hz" },
       { "mame_current_adj_brightness",
-	"Set brightness; default|+1%|+2%|+3%|+4%|+5%|+6%|+7%|+8%|+9%|+10%|+11%|+12%|+13%|+14%|+15%|+16%|+17%|+18%|+19%|+20%|-20%|-19%|-18%|-17%|-16%|-15%|-14%|-13%|-12%|-11%|-10%|-9%|-8%|-7%|-6%|-5%|-4%|-3%|-2%|-1%" },
+	"调整亮度; default|+1%|+2%|+3%|+4%|+5%|+6%|+7%|+8%|+9%|+10%|+11%|+12%|+13%|+14%|+15%|+16%|+17%|+18%|+19%|+20%|-20%|-19%|-18%|-17%|-16%|-15%|-14%|-13%|-12%|-11%|-10%|-9%|-8%|-7%|-6%|-5%|-4%|-3%|-2%|-1%" },
       { "mame_current_adj_contrast",
-	"Set contrast; default|+1%|+2%|+3%|+4%|+5%|+6%|+7%|+8%|+9%|+10%|+11%|+12%|+13%|+14%|+15%|+16%|+17%|+18%|+19%|+20%|-20%|-19%|-18%|-17%|-16%|-15%|-14%|-13%|-12%|-11%|-10%|-9%|-8%|-7%|-6%|-5%|-4%|-3%|-2%|-1%" },
+	"调整对比度; default|+1%|+2%|+3%|+4%|+5%|+6%|+7%|+8%|+9%|+10%|+11%|+12%|+13%|+14%|+15%|+16%|+17%|+18%|+19%|+20%|-20%|-19%|-18%|-17%|-16%|-15%|-14%|-13%|-12%|-11%|-10%|-9%|-8%|-7%|-6%|-5%|-4%|-3%|-2%|-1%" },
       { "mame_current_adj_gamma",
-	"Set gamma; default|+1%|+2%|+3%|+4%|+5%|+6%|+7%|+8%|+9%|+10%|+11%|+12%|+13%|+14%|+15%|+16%|+17%|+18%|+19%|+20%|-20%|-19%|-18%|-17%|-16%|-15%|-14%|-13%|-12%|-11%|-10%|-9%|-8%|-7%|-6%|-5%|-4%|-3%|-2%|-1%" },
-      { "mame-external_hiscore", "Use external hiscore.dat; disabled|enabled" },
+	"调整伽马; default|+1%|+2%|+3%|+4%|+5%|+6%|+7%|+8%|+9%|+10%|+11%|+12%|+13%|+14%|+15%|+16%|+17%|+18%|+19%|+20%|-20%|-19%|-18%|-17%|-16%|-15%|-14%|-13%|-12%|-11%|-10%|-9%|-8%|-7%|-6%|-5%|-4%|-3%|-2%|-1%" },
+      { "mame-external_hiscore", "使用外部hiscore.dat; disabled|enabled" },
       { NULL, NULL },
    };
 
@@ -614,7 +614,7 @@ static void check_variables(void)
    if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var) && var.value)
    {
 	int temp_fs = set_frame_skip;
-	if (!strcmp(var.value, "automatic"))
+	if (!strcmp(var.value, "自动"))
 		set_frame_skip = -1;
 	else
 		set_frame_skip = atoi(var.value);
@@ -631,13 +631,13 @@ static void check_variables(void)
    var.key = "mame_current_turbo_button";
    if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var) && var.value)
    {
-      	if (!strcmp(var.value, "button 1"))
+      	if (!strcmp(var.value, "按键1"))
 		turbo_enable = 1;
-      	else if (!strcmp(var.value, "button 2"))
+      	else if (!strcmp(var.value, "按键2"))
 		turbo_enable = 2;
-      	else if (!strcmp(var.value, "R2 to button 1 mapping"))
+      	else if (!strcmp(var.value, "R2键为按键1的连发键"))
 		turbo_enable = 3;
-      	else if (!strcmp(var.value, "R2 to button 2 mapping"))
+      	else if (!strcmp(var.value, "R2键为按键2的连发键"))
 		turbo_enable = 4;
       	else
 		turbo_enable = 0;
@@ -646,9 +646,9 @@ static void check_variables(void)
    var.key = "mame_current_turbo_delay";
    if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var) && var.value)
    {
-      	if (!strcmp(var.value, "medium"))
+      	if (!strcmp(var.value, "中等"))
 		turbo_delay = 5;
-      	else if (!strcmp(var.value, "slow"))
+      	else if (!strcmp(var.value, "慢速"))
 		turbo_delay = 7;
 	else
 		turbo_delay = 3;
@@ -657,7 +657,7 @@ static void check_variables(void)
    var.key = "mame_current_aspect_ratio";
    if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var) && var.value)
    {
-      	if (!strcmp(var.value, "PAR"))
+      	if (!strcmp(var.value, "像素宽高比"))
 		set_par = true;
 	else
 		set_par = false;
